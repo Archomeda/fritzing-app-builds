@@ -50,8 +50,8 @@ jobs:
         run: |
           cd quazip_qt5
           cmake --version
-          cmake -S . -B . -D QUAZIP_QT_MAJOR_VERSION=5 -D QUAZIP_USE_QT_ZLIB=ON
-          cmake --build .
+          cmake -S . -B build -D QUAZIP_QT_MAJOR_VERSION=5 -D QUAZIP_USE_QT_ZLIB=ON -D CMAKE_POLICY_DEFAULT_CMP0048=NEW
+          cmake --build build
       - name: Build Fritzing
         run: |
           cd fritzing
