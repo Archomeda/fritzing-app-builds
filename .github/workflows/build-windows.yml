@@ -32,7 +32,6 @@ jobs:
           powershell -c "Invoke-WebRequest -Uri 'https://github.com/stachenov/quazip/archive/refs/tags/v1.3.zip' -OutFile 'quazip.zip'"
           7z x quazip.zip
           mv quazip-1.3/quazip quazip_qt5
-          rm quazip-1.3
       - name: Download boost libraries
         run: |
           powershell -c "Invoke-WebRequest -Uri 'https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.7z' -OutFile 'boost.7z'"
