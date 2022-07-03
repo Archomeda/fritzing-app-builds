@@ -13,6 +13,12 @@ jobs:
         with:
           repository: fritzing/fritzing-app
           ref: 29c2cede3a0475ed770db1ee502fdebf6bf3a23d
+          path: fritzing
+      - name: Clone libgit2 repo
+        uses: actions/checkout@v3
+        with:
+          repository: libgit2/libgit2
+          path: libgit2
       - name: Install VS2017 Build Tools
         run: choco install visualstudio2017buildtools visualstudio2017-workload-vctools
       - name: Install Qt 5.12.7
@@ -21,11 +27,18 @@ jobs:
           version: '5.12.7'
           arch: win64_msvc2017_64
           dir: C:\
+      - name: Build libgit2
+        run: |
+          cd libgit2
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build .
       - name: Build Fritzing
-        run: tools/build-windows.bat 0.9.10
+        run: fritzing/tools/build-windows.bat 0.9.10
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
           name: Fritzing-0.9.10
-          path: release/
+          path: fritzing/release/
           if-no-files-found: error
