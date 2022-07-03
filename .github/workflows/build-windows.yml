@@ -27,6 +27,8 @@ jobs:
           version: '5.12.7'
           arch: win64_msvc2017_64
           dir: C:\
+      - name: Install CMake 3.15.5
+        run: choco install cmake --version=3.15.5
       - name: Download quazip library
         run: |
           powershell -c "Invoke-WebRequest -Uri 'https://github.com/stachenov/quazip/archive/refs/tags/v1.3.zip' -OutFile 'quazip.zip'"
@@ -41,12 +43,14 @@ jobs:
           cd libgit2
           mkdir build64
           cd build64
+          cmake --version
           cmake .. -A x64 -D BUILD_SHARED_LIBS=OFF -D BUILD_CLAR=OFF
           cmake --build . --config Release
       - name: Build quazip
         run: |
           cd quazip_qt5
-          cmake -S . -B . -D QUAZIP_QT_MAJOR_VERSION=5 -D QUAZIP_USE_QT_ZLIB=ON -D CMAKE_POLICY_DEFAULT_CMP0048=NEW
+          cmake --version
+          cmake -S . -B . -D QUAZIP_QT_MAJOR_VERSION=5 -D QUAZIP_USE_QT_ZLIB=ON
           cmake --build .
       - name: Build Fritzing
         run: |
