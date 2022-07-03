@@ -34,10 +34,10 @@ jobs:
       - name: Build libgit2
         run: |
           cd libgit2
-          mkdir build
-          cd build
+          mkdir build64
+          cd build64
           cmake ..
-          cmake --build .
+          cmake --build . --config Release
       - name: Build Fritzing
         run: |
           cd fritzing
