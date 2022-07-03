@@ -13,10 +13,8 @@ jobs:
         with:
           repository: fritzing/fritzing-app
           ref: 29c2cede3a0475ed770db1ee502fdebf6bf3a23d
-      - name: Install VS2017
-        run: choco install visualstudio2017community
-      - name: Install VS2017 build tools
-        run: choco install visualstudio2017buildtools
+      - name: Install VS2017 Build Tools
+        run: choco install visualstudio2017buildtools visualstudio2017-workload-vctools
       - name: Install Qt 5.12.7
         uses: jurplel/install-qt-action@v2
         with:
