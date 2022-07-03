@@ -27,6 +27,10 @@ jobs:
           version: '5.12.7'
           arch: win64_msvc2017_64
           dir: C:\
+      - name: Download boost libraries
+        run: |
+          powershell -c "Invoke-WebRequest -Uri 'https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.7z' -OutFile 'boost.7z'"
+          7z x boost.7z
       - name: Build libgit2
         run: |
           cd libgit2
@@ -35,7 +39,9 @@ jobs:
           cmake ..
           cmake --build .
       - name: Build Fritzing
-        run: fritzing/tools/build-windows.bat 0.9.10
+        run: |
+          cd fritzing
+          tools/build-windows.bat 0.9.10
       - name: Publish artifact
         uses: actions/upload-artifact@v3
         with:
