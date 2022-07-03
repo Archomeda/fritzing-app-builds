@@ -46,5 +46,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Fritzing-0.9.10
-          path: fritzing/release/
+          path: fritzing/release64/*.zip
           if-no-files-found: error
